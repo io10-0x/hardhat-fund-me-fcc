@@ -1,7 +1,7 @@
 const { assert } = require("chai");
 const { deployments, ethers, getNamedAccounts, network } = require("hardhat");
 
-network.chainId == 31337
+network.config.chainId == 31337
   ? describe.skip
   : describe("stagingtest", async function () {
       let deployer;

@@ -8,7 +8,7 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
   const { deployer } = await getNamedAccounts();
   const chainId = network.config.chainId;
   let pricefeedaddress;
-  if (chainId == 31337) {
+  if (chainId == 1337) {
     const pricefeedmock = await deployments.get("MockV3Aggregator");
     pricefeedaddress = pricefeedmock.address;
   } else {

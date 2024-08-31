@@ -1,6 +1,6 @@
 const { assert, expect } = require("chai");
 const { deployments, ethers, getNamedAccounts, network } = require("hardhat");
-!(network.chainId == 31337)
+!(network.config.chainId == 31337)
   ? describe.skip
   : describe("Fundme project unit tests", async function () {
       let deployer;
@@ -117,7 +117,7 @@ const { deployments, ethers, getNamedAccounts, network } = require("hardhat");
               deployer.address
             );
             const accounts = await ethers.getSigners();
-            for (i = 1; i > 6; i++) {
+            for (i = 1; i < 6; i++) {
               const fundMeconnectedaccount = await fundMe.connect(accounts[i]);
               fundMe.fund({ value: sendval });
             }
@@ -139,7 +139,7 @@ const { deployments, ethers, getNamedAccounts, network } = require("hardhat");
               startingcontractbalance + startingdeployerbalance,
               enddeployerbalance + endcontractbalance + gascost
             );
-            for (i = 1; i > 6; i++) {
+            for (i = 1; i < 6; i++) {
               assert.equal(await fundMe.getamountfunded(accounts[i]), 0);
             }
             expect(fundMe.getfunder(0)).to.be.reverted;
@@ -160,7 +160,7 @@ const { deployments, ethers, getNamedAccounts, network } = require("hardhat");
               deployer.address
             );
             const accounts = await ethers.getSigners();
-            for (i = 1; i > 10; i++) {
+            for (i = 1; i < 10; i++) {
               const fundMeconnectedaccount = await fundMe.connect(accounts[i]);
               fundMe.fund({ value: sendval });
             }
@@ -182,7 +182,7 @@ const { deployments, ethers, getNamedAccounts, network } = require("hardhat");
               startingcontractbalance + startingdeployerbalance,
               enddeployerbalance + endcontractbalance + gascost
             );
-            for (i = 1; i > 10; i++) {
+            for (i = 1; i < 10; i++) {
               assert.equal(await fundMe.getamountfunded(accounts[i]), 0);
             }
             expect(fundMe.getfunder(0)).to.be.reverted;
